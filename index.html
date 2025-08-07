@@ -5,8 +5,482 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MerchJastip - Jasa Titip Merch Official</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6C63FF;
+            --secondary: #FF6584;
+            --dark: #2D3748;
+            --light: #F7FAFC;
+            --success: #48BB78;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f9;
+            color: var(--dark);
+            max-width: 480px;
+            margin: 0 auto;
+            position: relative;
+            min-height: 100vh;
+        }
+        
+        .container {
+            padding: 16px;
+            padding-bottom: 80px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            padding: 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .header-icons {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .header-icons i {
+            font-size: 20px;
+            color: var(--dark);
+        }
+        
+        /* Navigation */
+        .nav-tabs {
+            display: flex;
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 16px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .nav-tab {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            font-weight: 500;
+            color: var(--dark);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-tab.active {
+            opacity: 1;
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #6C63FF 0%, #8C83FF 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero h2 {
+            font-size: 20px;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero p {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-image {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 120px;
+            height: 120px;
+            opacity: 0.2;
+            z-index: 1;
+        }
+        
+        /* Search Bar */
+        .search-bar {
+            display: flex;
+            background-color: white;
+            border-radius: 12px;
+            padding: 8px 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .search-bar input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
+        
+        .search-bar i {
+            color: var(--dark);
+            opacity: 0.5;
+        }
+        
+        /* Categories */
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        
+        .categories {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 8px 0;
+            margin-bottom: 20px;
+        }
+        
+        .category {
+            min-width: 80px;
+            padding: 10px;
+            background-color: white;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 500;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .category.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .category i {
+            display: block;
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        
+        /* Merch List */
+        .merch-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .merch-item {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .merch-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .merch-image {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+        
+        .merch-info {
+            padding: 12px;
+        }
+        
+        .merch-title {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 4px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .merch-artist {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-bottom: 8px;
+        }
+        
+        .merch-price {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        /* Jastip Requests */
+        .request-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .request-item {
+            background-color: white;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            gap: 12px;
+        }
+        
+        .request-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+        
+        .request-info {
+            flex: 1;
+        }
+        
+        .request-title {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        
+        .request-status {
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 50px;
+            display: inline-block;
+            background-color: #E2E8F0;
+            color: var(--dark);
+        }
+        
+        .request-status.process {
+            background-color: #F6E05E;
+            color: #975A16;
+        }
+        
+        .request-status.complete {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            max-width: 480px;
+            margin: 0 auto;
+            z-index: 100;
+        }
+        
+        .nav-item {
+            text-align: center;
+            font-size: 10px;
+            color: var(--dark);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item.active {
+            opacity: 1;
+            color: var(--primary);
+        }
+        
+        .nav-item i {
+            display: block;
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+        
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 200;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .modal {
+            background-color: white;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 400px;
+            padding: 20px;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .modal-title {
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .modal-close {
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--dark);
+            opacity: 0.5;
+        }
+        
+        .modal-body {
+            margin-bottom: 20px;
+        }
+        
+        .modal-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .modal-merch-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .modal-merch-artist {
+            font-size: 14px;
+            opacity: 0.7;
+            margin-bottom: 12px;
+        }
+        
+        .modal-merch-desc {
+            font-size: 14px;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        
+        .modal-flex {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        
+        .modal-price {
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--primary);
+        }
+        
+        .btn {
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        
+        .form-group {
+            margin-bottom: 16px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
@@ -18,12 +492,154 @@
             </div>
         </div>
     </header>
-
+    
     <div class="container">
-        <!-- Semua isi konten UI: nav-tab, hero, search-bar, kategori, merch-list, tab-content (home, requests, history) -->
-        <!-- (copy dari HTML asli bagian body dan tab content) -->
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-tab="home">Beranda</div>
+            <div class="nav-tab" data-tab="requests">Permintaan</div>
+            <div class="nav-tab" data-tab="history">Riwayat</div>
+        </div>
+        
+        <!-- Home Tab -->
+        <div class="tab-content active" id="home">
+            <div class="hero">
+                <h2>Cari merch official favoritmu</h2>
+                <p>Kami siap membantu mendapatkan merch official dari artis, grup, atau brand favoritmu dengan harga terbaik!</p>
+                <img src="https://placehold.co/600x400" alt="Koleksi merchandise official dari berbagai artis dan grup musik" class="hero-image">
+            </div>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Cari merch official...">
+                <i class="fas fa-search"></i>
+            </div>
+            
+            <h3 class="section-title">Kategori</h3>
+            <div class="categories">
+                <div class="category active">
+                    <i class="fas fa-music"></i>
+                    Musik
+                </div>
+                <div class="category">
+                    <i class="fas fa-film"></i>
+                    Film
+                </div>
+                <div class="category">
+                    <i class="fas fa-gamepad"></i>
+                    Game
+                </div>
+                <div class="category">
+                    <i class="fas fa-tshirt"></i>
+                    Fashion
+                </div>
+                <div class="category">
+                    <i class="fas fa-book"></i>
+                    Buku
+                </div>
+            </div>
+            
+            <h3 class="section-title">Populer Minggu Ini</h3>
+            <div class="merch-list">
+                <div class="merch-item" data-id="1">
+                    <img src="https://placehold.co/600x400" alt="Album fisik BTS Proof with exclusive photocard" class="merch-image">
+                    <div class="merch-info">
+                        <div class="merch-title">BTS Proof Album</div>
+                        <div class="merch-artist">BTS</div>
+                        <div class="merch-price">Rp 450.000</div>
+                    </div>
+                </div>
+                
+                <div class="merch-item" data-id="2">
+                    <img src="https://placehold.co/600x400" alt="BLACKPINK Born Pink hoodie with official logo embroidery" class="merch-image">
+                    <div class="merch-info">
+                        <div class="merch-title">BLACKPINK Hoodie</div>
+                        <div class="merch-artist">BLACKPINK</div>
+                        <div class="merch-price">Rp 650.000</div>
+                    </div>
+                </div>
+                
+                <div class="merch-item" data-id="3">
+                    <img src="https://placehold.co/600x400" alt="Official NCT Dream lightstick version 2 with packaging" class="merch-image">
+                    <div class="merch-info">
+                        <div class="merch-title">NCT Dream Lightstick</div>
+                        <div class="merch-artist">NCT Dream</div>
+                        <div class="merch-price">Rp 800.000</div>
+                    </div>
+                </div>
+                
+                <div class="merch-item" data-id="4">
+                    <img src="https://placehold.co/600x400" alt="IU official merchandise set including photo cards and stickers" class="merch-image">
+                    <div class="merch-info">
+                        <div class="merch-title">IU Merchandise Set</div>
+                        <div class="merch-artist">IU</div>
+                        <div class="merch-price">Rp 350.000</div>
+                    </div>
+                </div>
+                
+                <div class="merch-item" data-id="5">
+                    <img src="https://placehold.co/600x400" alt="Twice tour 2023 official t-shirt with concert dates" class="merch-image">
+                    <div class="merch-info">
+                        <div class="merch-title">Twice Tour T-Shirt</div>
+                        <div class="merch-artist">Twice</div>
+                        <div class="merch-price">Rp 400.000</div>
+                    </div>
+                </div>
+                
+                <div class="merch-item" data-id="6">
+                    <img src="https://placehold.co/600x400" alt="Stray Kids Maxident limited edition album with inclusions" class="merch-image">
+                    <div class="merch-info">
+                        <div class="merch-title">Stray Kids Album</div>
+                        <div class="merch-artist">Stray Kids</div>
+                        <div class="merch-price">Rp 550.000</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Requests Tab -->
+        <div class="tab-content" id="requests">
+            <h3 class="section-title">Permintaan Jastip</h3>
+            <div class="request-list">
+                <div class="request-item">
+                    <img src="https://placehold.co/600x400" alt="BTS Proof album with photocard" class="request-image">
+                    <div class="request-info">
+                        <div class="request-title">BTS Proof Album</div>
+                        <div class="request-status process">Dalam Proses</div>
+                    </div>
+                </div>
+                
+                <div class="request-item">
+                    <img src="https://placehold.co/600x400" alt="Blackpink lightstick version 2" class="request-image">
+                    <div class="request-info">
+                        <div class="request-title">BLACKPINK Lightstick</div>
+                        <div class="request-status">Menunggu</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- History Tab -->
+        <div class="tab-content" id="history">
+            <h3 class="section-title">Riwayat Jastip</h3>
+            <div class="request-list">
+                <div class="request-item">
+                    <img src="https://placehold.co/600x400" alt="NCT Dream lightstick version 2" class="request-image">
+                    <div class="request-info">
+                        <div class="request-title">NCT Dream Lightstick</div>
+                        <div class="request-status complete">Selesai</div>
+                    </div>
+                </div>
+                
+                <div class="request-item">
+                    <img src="https://placehold.co/600x400" alt="IU official merchandise set" class="request-image">
+                    <div class="request-info">
+                        <div class="request-title">IU Merchandise Set</div>
+                        <div class="request-status complete">Selesai</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
+    
     <!-- Bottom Navigation -->
     <div class="bottom-nav">
         <div class="nav-item active">
@@ -43,8 +659,8 @@
             Profil
         </div>
     </div>
-
-    <!-- Modal untuk produk dan permintaan -->
+    
+    <!-- Product Modal -->
     <div class="modal-overlay" id="productModal">
         <div class="modal">
             <div class="modal-header">
@@ -52,11 +668,12 @@
                 <div class="modal-close" id="modalClose">&times;</div>
             </div>
             <div class="modal-body" id="modalBody">
-                <!-- Dynamic content -->
+                <!-- Content will be loaded dynamically -->
             </div>
         </div>
     </div>
-
+    
+    <!-- Request Modal -->
     <div class="modal-overlay" id="requestModal">
         <div class="modal">
             <div class="modal-header">
@@ -64,11 +681,149 @@
                 <div class="modal-close" id="requestModalClose">&times;</div>
             </div>
             <div class="modal-body">
-                <!-- Form permintaan -->
+                <img src="https://placehold.co/600x400" alt="Official merchandise placeholder" class="modal-image" id="requestImage">
+                
+                <div class="form-group">
+                    <label class="form-label">Nama Merchandise</label>
+                    <input type="text" class="form-control" id="merchName" placeholder="Contoh: BTS Proof Album">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Link Referensi</label>
+                    <input type="text" class="form-control" id="merchLink" placeholder="Contoh: https://official-store.com/product1">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Kuantitas</label>
+                    <input type="number" class="form-control" id="merchQty" min="1" value="1">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Catatan Tambahan</label>
+                    <textarea class="form-control" id="merchNotes" rows="3" placeholder="Contoh: Warna merah, size L, dll"></textarea>
+                </div>
+                
+                <button class="btn btn-primary btn-block" id="submitRequest">Kirim Permintaan</button>
             </div>
         </div>
     </div>
-
-    <script src="java.js"></script>
+    
+    <script>
+        // Tab Navigation
+        const tabs = document.querySelectorAll('.nav-tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Merch Item Click
+        const merchItems = document.querySelectorAll('.merch-item');
+        const productModal = document.getElementById('productModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalBody = document.getElementById('modalBody');
+        
+        merchItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const merchTitle = item.querySelector('.merch-title').textContent;
+                const merchArtist = item.querySelector('.merch-artist').textContent;
+                const merchPrice = item.querySelector('.merch-price').textContent;
+                const merchImage = item.querySelector('.merch-image').src;
+                const merchAlt = item.querySelector('.merch-image').alt;
+                
+                modalBody.innerHTML = `
+                    <img src="${merchImage}" alt="${merchAlt}" class="modal-image">
+                    <h3 class="modal-merch-title">${merchTitle}</h3>
+                    <div class="modal-merch-artist">${merchArtist}</div>
+                    <p class="modal-merch-desc">Merchandise official langsung dari official store ${merchArtist}. Barang baru 100% original dengan garansi resmi dan sertifikat keaslian.</p>
+                    <div class="modal-flex">
+                        <div class="modal-price">${merchPrice}</div>
+                        <div>Stok: Tersedia</div>
+                    </div>
+                    <button class="btn btn-primary btn-block" id="requestJastip">Minta Jastip</button>
+                `;
+                
+                productModal.classList.add('active');
+                
+                // Add event listener to the newly created button
+                document.getElementById('requestJastip').addEventListener('click', () => {
+                    productModal.classList.remove('active');
+                    
+                    // Prepare request modal
+                    const requestModal = document.getElementById('requestModal');
+                    document.getElementById('requestImage').src = merchImage;
+                    document.getElementById('merchName').value = merchTitle;
+                    
+                    requestModal.classList.add('active');
+                });
+            });
+        });
+        
+        // Modal Close
+        modalClose.addEventListener('click', () => {
+            productModal.classList.remove('active');
+        });
+        
+        document.getElementById('requestModalClose').addEventListener('click', () => {
+            document.getElementById('requestModal').class.classList.remove('active');
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === productModal) {
+                productModal.classList.remove('active');
+            }
+            if (e.target === document.getElementById('requestModal')) {
+                document.getElementById('requestModal').classList.remove('active');
+            }
+        });
+        
+        // Handle request submission
+        document.getElementById('submitRequest').addEventListener('click', () => {
+            const merchName = document.getElementById('merchName').value;
+            
+            alert(`Permintaan jastip untuk "${merchName}" telah dikirim! Kami akan menghubungi Anda dalam 1x24 jam.`);
+            
+            document.getElementById('requestModal').classList.remove('active');
+            
+            // Simulate adding to requests
+            const requestsList = document.querySelector('#requests .request-list');
+            const newRequest = document.createElement('div');
+            newRequest.className = 'request-item';
+            newRequest.innerHTML = `
+                <img src="${document.getElementById('requestImage').src}" alt="${merchName}" class="request-image">
+                <div class="request-info">
+                    <div class="request-title">${merchName}</div>
+                    <div class="request-status">Menunggu</div>
+                </div>
+            `;
+            requestsList.prepend(newRequest);
+            
+            // Reset form
+            document.getElementById('merchLink').value = '';
+            document.getElementById('merchQty').value = '1';
+            document.getElementById('merchNotes').value = '';
+        });
+        
+        // Category selection
+        const categories = document.querySelectorAll('.category');
+        categories.forEach(category => {
+            category.addEventListener('click', () => {
+                categories.forEach(c => c.classList.remove('active'));
+                category.classList.add('active');
+                
+                // In a real app, this would filter merch by category
+            });
+        });
+    </script>
 </body>
 </html>
