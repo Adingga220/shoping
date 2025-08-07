@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MerchJastip - Jasa Titip Merch Official</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">Merch<span>Jastip</span></div>
+            <div class="header-icons">
+                <i class="fas fa-bell"></i>
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Semua isi konten UI: nav-tab, hero, search-bar, kategori, merch-list, tab-content (home, requests, history) -->
+        <!-- (copy dari HTML asli bagian body dan tab content) -->
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-item active">
+            <i class="fas fa-home"></i>
+            Beranda
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-search"></i>
+            Cari
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-shopping-bag"></i>
+            Pesanan
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-user"></i>
+            Profil
+        </div>
+    </div>
+
+    <!-- Modal untuk produk dan permintaan -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">Detail Merchandise</div>
+                <div class="modal-close" id="modalClose">&times;</div>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="requestModal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">Buat Permintaan Jastip</div>
+                <div class="modal-close" id="requestModalClose">&times;</div>
+            </div>
+            <div class="modal-body">
+                <!-- Form permintaan -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
